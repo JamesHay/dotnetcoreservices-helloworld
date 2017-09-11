@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 
 namespace hello_world
 {
@@ -6,6 +7,10 @@ namespace hello_world
     {
         static void Main(string[] args)
         {
+            var config = new ConfigurationBuilder()
+                .AddCommandLine(args)
+                .Build();
+
             Console.WriteLine("Hello World!");
         }
     }
