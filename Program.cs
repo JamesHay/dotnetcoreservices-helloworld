@@ -1,7 +1,10 @@
 ﻿using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace hello_world
+
+namespace HelloWorld
 {
     class Program
     {
@@ -11,7 +14,13 @@ namespace hello_world
                 .AddCommandLine(args)
                 .Build();
 
-            Console.WriteLine("Hello World!");
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseStartup<Startup>()
+                .UseConfiguration(config)
+                .Build();
+
+            host.Run();
         }
     }
 }
